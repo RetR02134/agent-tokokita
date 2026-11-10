@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TokoKita - Chat</title>
+<style>
+:root{--blue:#1f4e9c;--bg:#f1f3f6;--card:#fff;--ink:#1f2937;--mut:#6b7280;--line:#e3e6eb;--me:#1f4e9c;--bot:#eef1f6}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--ink:#e5e7eb;--mut:#9ca3af;--line:#2a2f3a;--bot:#222733}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',Calibri,Arial,sans-serif;display:flex;justify-content:center;min-height:100vh}
+.app{width:100%;max-width:760px;display:flex;flex-direction:column;height:100vh;background:var(--card);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+header{background:var(--blue);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:18px;margin:0}
+header small{opacity:.8;display:block;font-size:12px;margin-top:2px}
+header button{background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px}
+#log{flex:1;overflow-y:auto;padding:16px 16px 8px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:10px 13px;border-radius:14px;line-height:1.5;font-size:15px;word-wrap:break-word}
+.me{align-self:flex-end;background:var(--me);color:#fff;border-bottom-right-radius:4px;white-space:pre-wrap}
+.bot{align-self:flex-start;background:var(--bot);border-bottom-left-radius:4px}
+.bot p{margin:0 0 8px}.bot p:last-child{margin:0}
+.bot ul{margin:4px 0 8px;padding-left:20px}
+.bot a{color:var(--blue)}
+@media (prefers-color-scheme:dark){.bot a{color:#8ab4ff}}
+.typing{color:var(--mut);font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 8px}
+.chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+form{display:flex;gap:8px;padding:10px 16px 12px;border-top:1px solid var(--line)}
+textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;background:var(--card);color:var(--ink);max-height:120px}
+form button[hidden]{display:none}
+form button{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:0 18px;font-size:15px;cursor:pointer}
+form button:disabled{opacity:.5;cursor:default}
+.note{font-size:11px;color:var(--mut);padding:0 16px 10px;text-align:center}
+.msg.bot{max-width:94%}
+.msg.bot:has(.chart),.msg.bot:has(.tbl){width:94%}
+.bot .seg>*:last-child{margin-bottom:0}
+.bot code{background:rgba(127,127,127,.18);border-radius:4px;padding:1px 4px;font-size:13px}
+.tbl{overflow-x:auto;margin:6px 0 8px}
+.bot table{border-collapse:collapse;font-size:13.5px;min-width:100%}
+.bot th,.bot td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.bot th{background:rgba(31,78,156,.12);white-space:nowrap}
+.chart{margin:8px 0;padding:10px 10px 6px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.ctitle{font-weight:600;font-size:14px;margin:0 0 6px}
+.cnote{font-size:12px;color:var(--mut);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div><h1>TokoKita</h1><small>Asisten Agent Kita (contoh/demo)</small></div>
+    <button id="reset" type="button">Percakapan baru</button>
+  </header>
+  <div id="log" aria-live="polite"></div>
+  <div class="chips" id="chips"></div>
+  <form id="form">
+    <textarea id="input" rows="1" maxlength="1500" placeholder="Tulis pesan..." aria-label="Pesan"></textarea>
+    <button id="send" type="submit">Kirim</button>
+    <button id="stop" type="button" hidden>Berhenti</button>
+  </form>
+  <div class="note">Contoh demo: pembayaran disetujui otomatis dan data pelanggan belum diverifikasi penuh. </div>
+</div>
+<script src="/static/app.js" defer></script>
+</body>
+</html>
